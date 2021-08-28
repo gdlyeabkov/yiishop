@@ -24,6 +24,7 @@ $config = [
             'enableAutoLogin' => true,
         ],
         'errorHandler' => [
+            // 'errorAction' => 'shop/index',
             'errorAction' => 'site/error',
         ],
         'mailer' => [
@@ -45,16 +46,17 @@ $config = [
         'db' => $db,
 
         // 'urlManager' => [
-            // 'enablePrettyUrl' => true,
-            // 'showScriptName' => false,
-            // 'rules' => [
-                // "<controller:\w+>/product/<id:\d+>" => "<controller>/product",
-                // "<controller:\w+>/<action:\w+>" => "<controller>/index"
-            // ],
+        //     'enablePrettyUrl' => true,
+        //     'showScriptName' => true,
+        //     'rules' => [
+        //         // "<controller:\w+>/product/<id:\d+>" => "<controller>/product",
+        //         // "<controller:\w+>/<action:\w+>" => "<controller>/index"
+        //     ],
         // ],
         
     ],
     'params' => $params,
+    'defaultRoute' => 'shop/index'
 ];
 
 if (YII_ENV_DEV) {

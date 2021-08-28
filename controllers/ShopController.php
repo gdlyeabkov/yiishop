@@ -17,6 +17,14 @@ class ShopController extends SiteController {
 
     public $layout = 'yiishop';
 
+    public function actions() {
+        return [
+            'error' => [
+                'class' => 'yii\web\ErrorAction',
+            ]
+        ];
+    }
+    
     public function actionIndex() {
         return $this->render('index');
     }
@@ -198,7 +206,8 @@ class ShopController extends SiteController {
         
         $response = Yii::$app->getResponse();
         $response->format = Response::FORMAT_JSON;
-        
+        $response->data = [ "status" => "Error", "message" => "Error" ];
+
         $currentUser = UserModel::findOne([ "email" => $useremail]);
         if($currentUser !== null){
             $passwordCheck = \Yii::$app->getSecurity()->validatePassword($userpassword, $currentUser->password) && $userpassword !== '';

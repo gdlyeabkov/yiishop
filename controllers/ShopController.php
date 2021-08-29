@@ -4,7 +4,7 @@ namespace app\controllers;
 
 use Yii;
 use yii\web\Controller;
-use app\controllers\SiteController;
+// use app\controllers\SiteController;
 use yii\web\Response;
 use yii\web\Request;
 use yii\helpers\Url;
@@ -13,7 +13,7 @@ use app\models\ProductModel;
 use app\models\OrderModel;
 use \yii\helpers\Json;
 
-class ShopController extends SiteController {
+class ShopController extends Controller {
 
     public $layout = 'yiishop';
 
@@ -21,6 +21,7 @@ class ShopController extends SiteController {
         return [
             'error' => [
                 'class' => 'yii\web\ErrorAction',
+                'layout' => 'yiishop',
             ]
         ];
     }
@@ -232,7 +233,7 @@ class ShopController extends SiteController {
         $response = Yii::$app->getResponse();
         $response->format = Response::FORMAT_JSON;
         foreach($allUsers as $user){
-            if($user->email === $user->__get("email")){
+            if($useremail === $user->__get("email")){
                 $userExists = true;
             }
         }
@@ -372,13 +373,15 @@ class ShopController extends SiteController {
 
     public function actionOthers() {
         
-        // $exception = Yii::$app->errorHandler->exception;
-        // if ($exception instanceof \yii\web\NotFoundHttpException) {
-        //     return $this->render('index', ['redirectroute' => Url::current()]);
-        // } else {
-        //     return $this->render('index', ['redirectroute' => Url::current()]);
-            // echo(Yii::$app->request->url);
-        // }
+        $exception = Yii::$app->errorHandler->exception;
+        echo "redirect";
+        die;
+        if ($exception instanceof \yii\web\NotFoundHttpException) {
+            return $this->render('index', ['redirectroute' => Url::current()]);
+        } else {
+            return $this->render('index', ['redirectroute' => Url::current()]);
+            echo(Yii::$app->request->url);
+        }
 
     }
 
